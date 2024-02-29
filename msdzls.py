@@ -42,6 +42,7 @@ class MapItemsCalculator:
 
         # 创建所需道具输入
         self.entry_items = {}  # 确保这行在循环之前
+        tk.Label(item_frame, text="输入所需道具数量：（支持加法）").grid(row=0, column=0, columnspan=2)
         # 创建所需道具的输入框, 并设置默认值为0
         for i, item in enumerate(["A", "B", "C", "D", "E", "F"], start=1):
             label = tk.Label(item_frame, text=item)  # 使用item_frame作为父容器
