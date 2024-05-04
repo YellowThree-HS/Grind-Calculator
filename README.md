@@ -17,3 +17,8 @@ D: 3
 E: 2
 F: 2
 ![image](https://github.com/YellowThree-HS/Grind-Calculator/assets/137988018/da29c00b-0b6e-4ae6-b244-1dc870b1bfe2)
+
+· 待添加：
+1. 图上的功能
+2. 勾选想刷哪些地图
+3. 列出所有合适结果
