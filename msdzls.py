@@ -5,7 +5,7 @@ import os
 class MapItemsCalculator:
     def __init__(self, master):
         self.master = master
-        master.title("刷图计算器（锑食版）V1.1")
+        master.title("刷图计算器（锑食版）V1.2")
         master.geometry("500x500")  # 设置初始窗口大小
 
         # 创建Frame
@@ -44,7 +44,7 @@ class MapItemsCalculator:
 
         # 创建所需道具输入
         self.entry_items = {}
-        tk.Label(item_frame, text="输入所需道具数量：（支持加法）").grid(row=0, column=0, columnspan=2, sticky="w")
+        tk.Label(item_frame, text="输入所需道具数量：\n（支持加减法）").grid(row=0, column=0, columnspan=2, sticky="w")
         for i, item in enumerate(["A", "B", "C", "D", "E", "F"], start=1):
             label = tk.Label(item_frame, text=item, anchor="w")
             label.grid(row=i, column=0, sticky="w")
@@ -126,13 +126,29 @@ class MapItemsCalculator:
                 if entry_text == "":
                     needs[item] = 0
                 else:
-                    # 安全地计算表达式（仅支持数字和加法）
+                    # 安全地计算表达式（支持数字、加法和减法）
                     expr = entry_text.replace(" ", "")
-                    if any(c not in "0123456789+" for c in expr):
+                    # 检查是否只包含允许的字符
+                    if any(c not in "0123456789+-" for c in expr):
                         raise ValueError("包含非法字符")
+                    
+                    # 检查表达式是否以运算符开头或结尾
+                    if expr.startswith(('+', '-')) or expr.endswith(('+', '-')):
+                        raise ValueError("表达式不能以运算符开头或结尾")
+                    
+                    # 检查是否有连续的运算符
+                    if any(expr[i] in '+-' and expr[i+1] in '+-' for i in range(len(expr)-1)):
+                        raise ValueError("不能有连续的运算符")
+                    
+                    # 计算表达式
                     needs[item] = eval(expr)
+                    
+                    # 确保结果不为负数
+                    if needs[item] < 0:
+                        needs[item] = 0
+                        
             except Exception as e:
-                self.show_result(f"错误：{item}的输入 '{entry_text}' 无效\n只支持数字和加法")
+                self.show_result(f"错误：{item}的输入 '{entry_text}' 无效\n只支持数字、加法和减法\n错误详情: {str(e)}")
                 return
         
         # 初始化地图刷取次数记录
