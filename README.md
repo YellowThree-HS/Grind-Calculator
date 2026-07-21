@@ -16,7 +16,7 @@ C: 3
 D: 3
 E: 2
 F: 2
-![demo.png](./demo.png)
+![image](./demo.png)
 # 更新日志：
 
 ## V1.3
