@@ -16,7 +16,7 @@ C: 3
 D: 3
 E: 2
 F: 2
-<img width="627" height="665" alt="屏幕截图 2025-09-30 151722" src="https://github.com/user-attachments/assets/d0c7fcce-ffff-499c-a9d8-2709d1835e34" />
+![demo.png](./demo.png)
 # 更新日志：
 
 ## V1.2
